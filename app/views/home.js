@@ -10,12 +10,12 @@ import {
 import { StackNavigator } from 'react-navigation';
 
 export class HomeScreen extends React.Component {
+
   static navigationOptions = {
     title: 'Welcome Home',
   };
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View>
         <Text>Hello, Chat App!</Text>
