@@ -1,69 +1,29 @@
 import React, { Component } from 'react';
-import { ProductListScreen } from './app/views/product-list';
-import { HomeScreen } from './app/views/home';
-import { gql, ApolloProvider, createNetworkInterface, ApolloClient, graphql } from 'react-apollo';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  Button,
-  View
-} from 'react-native';
 
-import { StackNavigator } from 'react-navigation';
-import { HomePage } from './app/views/root';
-import { HomeScreenQuery } from './app/views/root';
+import { ApolloProvider, createNetworkInterface, ApolloClient } from 'react-apollo';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+import { AppRegistry, View } from 'react-native';
 
-const HomeScreenQueryWithData = graphql(HomeScreenQuery, {
-  options: (props) => ({
-    variables: {
-      id: props.id,
-      search: props.search,
-      categoryId: props.categoryId
-    },
-  }),
-})(HomePage);
+import { ProductListQuery } from './app/core/queries/product-list.query';
+import { ContainerStyle } from './app/styles/container.style';
 
-// const App = StackNavigator({
-//   Home: { screen: HomeScreen },
-//   ProductList: { screen: ProductListScreen }
-// });\
-
+/**
+ * Application root component
+ */
 class App extends Component {
 
-  constructor(...args) {
-    super(...args);
-
+  createClient() {
     const networkInterface = createNetworkInterface({ uri: 'https://803votn6w7.execute-api.us-west-2.amazonaws.com/dev/public/graphql' });
-    this.client = new ApolloClient({
+    return new ApolloClient({
       networkInterface
     });
   }
 
   render() {
     return (
-      <ApolloProvider client={this.client}>
-        <View>
-          <HomeScreenQueryWithData id={'813'} search={''} categoryId={0}/>
+      <ApolloProvider client={this.createClient()}>
+        <View style={ContainerStyle.root}>
+          <ProductListQuery id={'836'} search={''} categoryId={0} />
         </View>
       </ApolloProvider>
     );
