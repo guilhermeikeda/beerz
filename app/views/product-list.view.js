@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Text, View } from 'react-native';
 
+import { ProductListComponent } from '../components/product-list.component';
+
 import { TextStyle } from '../styles/text.style';
 
 /**
@@ -19,7 +21,8 @@ export function ProductListView({data, mutate}) {
     }
     return (
         <View>
-            <Text style={TextStyle.productTitle}> {data.poc.products[0].productVariants[0].title} </Text>
+            <Text style={TextStyle.title}> Lista de Produtos </Text>
+            <ProductListComponent products={data.poc.products} />
         </View>
     );
 }

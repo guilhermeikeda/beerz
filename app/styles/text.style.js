@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 /**
- * Container Styles
+ * Text Styles
  */
-export const TextStyle =  StyleSheet.create({
+export const TextStyle = StyleSheet.create({
   productTitle: {
     fontSize: 19,
-    fontWeight: 'bold',
+  },
+
+  title: {
+    fontSize: 25,
+    fontWeight: 'bold'
   }
 });
